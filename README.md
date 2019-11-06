@@ -10,6 +10,7 @@ Bootstrap: https://medium.com/@guilhermepejon/how-to-install-bootstrap-4-3-in-a-
 idk if used:
 JQuery: https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker
 
+Redcarpet markdown parser: https://github.com/vmg/redcarpet
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
