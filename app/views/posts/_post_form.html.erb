@@ -1,0 +1,15 @@
+<%= form_with model: @post, local: true do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title, :class => "form-control my-2"  %>
+  </p>
+ 
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body, :class => "form-control my-2"  %>
+  </p>
+ 
+  <p>
+    <%= form.submit "Submit Post", :class => "btn bg-primary btn-outline-light" %>
+  </p>
+<% end %>
