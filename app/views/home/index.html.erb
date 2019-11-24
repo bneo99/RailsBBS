@@ -6,8 +6,14 @@
   <% @posts.each do |post| %>
     <div class="card mb-3 border-dark">
       <div class="card-body">
+        <% if post.image.attached? %>
+          image here
+          <image src="<%=(url_for(post.image))%>" class="img-fluid">
+        <% else %>
+          no image attached
+        <% end %>
         <h3 class="card-title"><%= post.title %></h3>
-        <p class="card-text"><%= simple_format post.body %></p>
+        <%= simple_format post.body, :class => "card-text"%>
         <br/>
         <p class="card-text small"><em>Updated at: <%= post.updated_at %></em></p>
       </div>

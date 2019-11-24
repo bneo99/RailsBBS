@@ -16,10 +16,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params.merge(:user_id => current_user.id))
-
-    if @post.save
-      redirect_to @post
+    post = Post.create!(post_params)
+  if post.save
+      redirect_to post
     else
       render 'new'
     end
@@ -44,7 +43,7 @@ class PostsController < ApplicationController
 
 private
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :image)
   end
 
 end
