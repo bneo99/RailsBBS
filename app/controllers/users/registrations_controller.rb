@@ -4,6 +4,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
+  def all
+    @users = User.order(:id)
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -25,9 +29,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def remove
+    user = User.find(params[:format])
+    user.destroy
+ 
+    redirect_to users_all_path
+  end
+
+  def toggleadmin
+    user = User.find(params[:format])
+    user.update_attribute :admin, !user.admin
+    redirect_to users_all_path
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

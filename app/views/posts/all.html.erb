@@ -1,13 +1,14 @@
 <% content_for :title do %>
-  <title>My Posts | RailsBBS</title>
+  <title>All Posts | RailsBBS</title>
 <% end %>
 
 <div class="container my-3">
-<h1>My Posts</h1>
+<h1>All Posts</h1>
  
 <table class="table table-striped">
   <tr scope="row">
     <th scope="col">Time</th>
+    <th scope="col">User</th>
     <th scope="col">Title</th>
     <th scope="col">Body</th>
     <th scope="col"></th>
@@ -16,6 +17,13 @@
   <% @posts.each do |post| %>
     <tr scope="row">
       <td><%= post.updated_at %></td>
+      <td>
+        <% if @users[post.user_id].blank? %>
+          <em>removed (id:<%= post.user_id %>)</em>
+        <% else %>
+          <%= @users[post.user_id] %> (id:<%= post.user_id %>)
+        <% end %>
+      </td>
       <td><%= post.title %></td>
       <td><%= simple_format post.body %></td>
       <td>
