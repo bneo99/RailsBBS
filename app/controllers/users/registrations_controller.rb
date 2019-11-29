@@ -2,33 +2,31 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update, :adminupdate]
 
   def all
     @users = User.order(:id)
   end
 
-  # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def adminedit
+    @user = User.find(params[:format])
+  end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  def adminupdate
+    @user = User.find(params[:format])
 
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+    end
 
-  # PUT /resource
-  # def update
-  #   super
-  # end
+    if @user.update(account_update_params)
+      redirect_to users_all_path
+    else
+      render 'adminedit'
+    end
+  end
 
-  # DELETE /resource
   def remove
     user = User.find(params[:format])
     user.destroy

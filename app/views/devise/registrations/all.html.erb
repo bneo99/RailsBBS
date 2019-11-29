@@ -23,6 +23,7 @@
       <td><%= user.email %></td>
       <td><%= user.admin %></td>
       <td>
+        <%= link_to 'Edit', users_all_edit_path(user) %> |
         <%= link_to 'Toggle Admin', users_all_path(user),
                 method: :patch,
                 data: { confirm: 'Confirm admin toggle?' } %> |
