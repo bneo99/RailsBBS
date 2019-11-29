@@ -81,5 +81,6 @@ development:
 production:
   <<: *default
   database: RailsBBS_production
-  username: RailsBBS
+  host: localhost
+  username: prod
   password: <%= ENV['RAILSBBS_DATABASE_PASSWORD'] %>
