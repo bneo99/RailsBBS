@@ -5,6 +5,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update, :adminupdate]
 
   def all
+    #redirect to root if not logged in / not admin
+    redirect_to root_path, warning: "You are not authorized" unless !current_user.nil? and current_user.admin?
     @users = User.order(:id)
   end
 
